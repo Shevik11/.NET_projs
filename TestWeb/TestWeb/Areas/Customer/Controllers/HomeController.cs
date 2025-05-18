@@ -1,7 +1,7 @@
 using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 
-namespace TestWeb.Controllers;
+namespace TestWeb.Areas.Customer.Controllers;
 
 public class HomeController : Controller
 {

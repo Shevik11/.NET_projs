@@ -1,20 +1,21 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Proj.DataAccess.Data;
+using Proj.DataAccess.Repository;
 using Proj.DataAccess.Repository.IRepository;
 using Proj.Models;
 
-namespace TestWeb.Controllers
+namespace TestWeb.Areas.Admin.Controllers
 {
     public class CategoryController : Controller
     {
-        private readonly ICategoryRepository _categoryRepo;
-        public CategoryController(ICategoryRepository db) 
+        private readonly IUnitOfWork _unitOfWork;
+        public CategoryController(IUnitOfWork UnitOfWork) 
         {
-            _categoryRepo = db;
+            _unitOfWork = UnitOfWork;
         }
         public IActionResult Index()
         {
-            List<Category> ObjCategoryList = [.. _categoryRepo.GetAll()];
+            List<Category> ObjCategoryList = [.. _unitOfWork.Category.GetAll()];
             return View(ObjCategoryList);
         }
         [HttpGet]
@@ -25,8 +26,8 @@ namespace TestWeb.Controllers
         [HttpPost]
         public IActionResult Create(Category obj)
         {
-            _categoryRepo.Add(obj);
-            _categoryRepo.Save();
+            _unitOfWork.Category.Add(obj);
+            _unitOfWork.Save();
             TempData["success"] = "Category created successfully";
             return RedirectToAction("Index");
         }
@@ -37,7 +38,7 @@ namespace TestWeb.Controllers
             {
                 return NotFound();
             }
-            Category? categoryFromDb = _categoryRepo.Get(u => u.Id == id);
+            Category? categoryFromDb = _unitOfWork.Category.Get(u => u.Id == id);
             if (categoryFromDb == null)
             {
                 return NotFound();
@@ -47,8 +48,8 @@ namespace TestWeb.Controllers
         [HttpPost]
         public IActionResult Edit(Category obj)
         {
-            _categoryRepo.Update(obj);
-            _categoryRepo.Save();
+            _unitOfWork.Category.Update(obj);
+            _unitOfWork.Save();
             TempData["success"] = "Category updated successfully";
             return RedirectToAction("Index");
         }
@@ -58,7 +59,7 @@ namespace TestWeb.Controllers
             {
                 return NotFound();
             }
-            Category? categoryFromDb = _categoryRepo.Get(u => u.Id == id);
+            Category? categoryFromDb = _unitOfWork.Category.Get(u => u.Id == id);
             if (categoryFromDb == null)
             {
                 NotFound();
@@ -68,13 +69,13 @@ namespace TestWeb.Controllers
         [HttpPost, ActionName("Delete")]
         public IActionResult DeletePOST(int? id)
         {
-            Category? obj = _categoryRepo.Get(u => u.Id == id);
+            Category? obj = _unitOfWork.Category.Get(u => u.Id == id);
             if (obj == null)
             {
                 return NotFound();
             }
-            _categoryRepo.Remove(obj);
-            _categoryRepo.Save();
+            _unitOfWork.Category.Remove(obj);
+            _unitOfWork.Save();
             TempData["success"] = "Category deleted successfully";
             return RedirectToAction("Index");
         }
