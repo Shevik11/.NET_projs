@@ -4,15 +4,15 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
-using TestWeb.Data;
+using Proj.DataAccess.Data;
 
 #nullable disable
 
-namespace TestWeb.Migrations
+namespace Proj.DataAccess.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20250518143328_SeedCategpryTable")]
-    partial class SeedCategpryTable
+    [Migration("20250518141512_AddCategpryTableToDb")]
+    partial class AddCategpryTableToDb
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -42,26 +42,6 @@ namespace TestWeb.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Categories");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            DisplayedOrder = 1,
-                            Name = "Appetizers"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            DisplayedOrder = 2,
-                            Name = "Main Course"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            DisplayedOrder = 3,
-                            Name = "Desserts"
-                        });
                 });
 #pragma warning restore 612, 618
         }

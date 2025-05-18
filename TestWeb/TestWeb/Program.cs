@@ -1,6 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
-using TestWeb.Data;
+using Proj.DataAccess.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 

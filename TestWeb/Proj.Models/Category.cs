@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace TestWeb.Models
+namespace Proj.Models
 {
     public class Category
     {

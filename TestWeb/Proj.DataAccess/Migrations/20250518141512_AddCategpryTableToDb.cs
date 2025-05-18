@@ -3,7 +3,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 #nullable disable
 
-namespace TestWeb.Migrations
+namespace Proj.DataAccess.Migrations
 {
     /// <inheritdoc />
     public partial class AddCategpryTableToDb : Migration

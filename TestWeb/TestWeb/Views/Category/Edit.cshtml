@@ -6,9 +6,9 @@
 	<div class=" border p-3 mt-4">
 		<div class=" row pb-2">
 			<h2 class="text-primary">
-				Create Category
+				Edit Category
 			</h2>
-			<hr/>
+			<hr />
 		</div>
 		<div asp-validation-summary="All"></div>
 		<div class="mb-3">
@@ -21,7 +21,7 @@
 			<input asp-for="DisplayedOrder" class="form-control">
 			<span asp-validation-for="DisplayedOrder" class="text-danger"></span>
 		</div>
-		<button type="submit" class="btn btn-primary" style="width:150px">Create</button>
+		<button type="submit" class="btn btn-primary" style="width:150px">Update</button>
 		<a asp-controller="Category" asp-action="Index" class="btn btn-secondary style="width:150px">Back to List</a>
 	</div>
 
@@ -30,6 +30,6 @@
 
 @section Scripts {
 	@{
-		<partial name="_ValidationScriptsPartial"/>
+		<partial name="_ValidationScriptsPartial" />
 	}
 }
